@@ -13,42 +13,66 @@
     <%= javascript_include_tag 'application' %>
   </head>
 
-  <body class="hold-transition skin-blue sidebar-mini">
-    <div class="wrapper">
+  <body>
+      <% if user_signed_in? %>
+        <div class="hold-transition skin-blue sidebar-mini">
+        <div class="wrapper">
 
-      <%= render partial:  "layouts/shared/top-nav" %>
+          <%= render partial:  "layouts/shared/top-nav" %>
 
-      <%= render partial: "layouts/shared/sidebar" %>
+          <%= render partial: "layouts/shared/sidebar" %>
 
-      <div class="content-wrapper">
-        <section class="content-header">
-          <h1>
-            Page Header
-            <small>Optional description</small>
-          </h1>
-          <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-            <li class="active">Here</li>
-          </ol>
-        </section>
+          <div class="content-wrapper">
+            <section class="content-header">
+              <h1>
+                Page Header
+                <small>Optional description</small>
+              </h1>
+              <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
+                <li class="active">Here</li>
+              </ol>
+            </section>
 
-        <section class="content container-fluid">
-            <%= yield %>
-        </section>
-      </div>
+            <section class="content container-fluid">
+                <% if user_signed_in? %>
+                  <% if notice != nil  %>
+                    <div class="notice alert alert-info alert-dismissible">
+                        <h4><i class="icon fa fa-info"></i> Login</h4>
+                      <%= notice %>
+                    </div>
+                    <% end %>
+                
+                <% end %>
 
-      <footer class="main-footer">
-          <div class="pull-right hidden-xs">
-            Anything you want
+                <%= yield %>
+            </section>
           </div>
 
-          <strong>Copyright &copy; 2016 <a href="#">Company</a>.</strong> All rights reserved.
-        </footer>
+          <footer class="main-footer">
+              <div class="pull-right hidden-xs">
+                Anything you want
+              </div>
 
-      <%= render partial: "layouts/shared/control-sidebar" %>
+              <strong>Copyright &copy; 2016 <a href="#">Company</a>.</strong> All rights reserved.
+            </footer>
 
-    </div>
+          <%= render partial: "layouts/shared/control-sidebar" %>
 
+        </div>
+      </div>
+    <% else %>
+      <body class="hold-transition login-page">
+        <% if alert != nil %>
+          <div class="alert alert-warning alert-dismissible">
+              <h4><i class="icon fa fa-warning"></i> Alert!</h4>
+            <%= alert %>
+          </div>
+        <% end %>
+
+        <%= render partial: "layouts/shared/login" %>
+      </div>
+    <% end %>
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   </body>
