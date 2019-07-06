@@ -5,20 +5,21 @@ application up and running.
 
 Things you may want to cover:
 
-* Ruby version
+## Versions
+* Ruby 2.6.3
+* Rails 5.1.7
+* Postgresql  >= 0.18, < 2.0
 
 * System dependencies
 
 * Configuration
 
 * Database creation
-
-* Database initialization
-
-* How to run the test suite
+    1. rails :setup
 
 * Services (job queues, cache servers, search engines, etc.)
 
 * Deployment instructions
 
-* ...
+* Run dev mode
+    - rails s
